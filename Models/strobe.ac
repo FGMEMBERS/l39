@@ -1,0 +1,28 @@
+AC3Db
+MATERIAL "ac3dmat1" rgb 1 1 1  amb 0 0 0  emis 1 1 1  spec 0 0 0  shi 0  trans 0.008
+OBJECT world
+kids 1
+OBJECT poly
+name "strobe"
+loc 0.169368 0.21037 0
+texture "nav_light_white.png"
+crease 45.000000
+numvert 4
+-0.194374 -0.18537 0
+-0.144372 -0.18537 0
+-0.144372 -0.23537 0
+-0.194374 -0.23537 0
+numsurf 2
+SURF 0x10
+mat 0
+refs 3
+2 1 0
+0 0 1
+3 0 0
+SURF 0x10
+mat 0
+refs 3
+0 0 1
+2 1 0
+1 1 1
+kids 0
