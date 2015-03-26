@@ -1,0 +1,63 @@
+AC3Db
+MATERIAL "ac3dmat1" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 0.2 0.2 0.2  shi 128  trans 0
+MATERIAL "ac3dmat1" rgb 1 1 1  amb 1 1 1  emis 1 1 1  spec 1 1 1  shi 128  trans 0
+OBJECT world
+kids 1
+OBJECT poly
+name "box"
+loc -0.00665993 0 1.86265e-009
+texture "logo.png"
+crease 45.000000
+numvert 8
+-0.00854949 -0.039 -0.039
+0.00854949 -0.039 -0.039
+0.00854949 -0.039 0.039
+-0.00854949 -0.039 0.039
+-0.00854949 0.039 0.039
+0.00854949 0.039 0.039
+0.00854949 0.039 -0.039
+-0.00854949 0.039 -0.039
+numsurf 6
+SURF 0x30
+mat 0
+refs 4
+5 0 1
+2 0 0
+1 1 0
+6 1 1
+SURF 0x30
+mat 0
+refs 4
+7 1 1
+0 1 0
+3 0 0
+4 0 1
+SURF 0x30
+mat 0
+refs 4
+6 1 1
+1 1 0
+0 1 0
+7 1 1
+SURF 0x30
+mat 0
+refs 4
+4 0 1
+3 0 0
+2 0 0
+5 0 1
+SURF 0x30
+mat 0
+refs 4
+7 1 1
+4 0 1
+5 0 1
+6 1 1
+SURF 0x30
+mat 0
+refs 4
+0 1 0
+1 1 0
+2 0 0
+3 0 0
+kids 0

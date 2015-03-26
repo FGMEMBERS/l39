@@ -3,7 +3,7 @@
 <PropertyList>
 
   <path>fuel.ac</path>
-  
+
   <animation>
     <type>rotate</type>
     <object-name>Needle1</object-name>

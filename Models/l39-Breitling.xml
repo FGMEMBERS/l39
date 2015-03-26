@@ -1,0 +1,696 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+  <nasal>
+    <load>
+      var livery_update = aircraft.livery_update.new("Aircraft/l39/Models/Liveries", 10);
+    </load>
+
+    <unload>
+      livery_update.stop();
+      crew_door.unalias();
+      passenger_door.unalias();
+    </unload>
+  </nasal>
+
+
+	<path>l39.ac</path>
+
+  <animation>
+    <type>material</type>
+    <!--
+    ICI IL FAUT LISTER TOUS LES OBJETS QUI DOIVENT ETRE AFFECTE PAR LE CHANGEMENT DE LIVREE
+    <object-name>vortex_generators</object-name>
+    <object-name>elevator</object-name>
+    <object-name>elevator</object-name>
+    ...
+    ...
+    Pour ce la il faut ouvrir le fichier l39.ac et énumérer tous les objets, travail long et fastidieux ;)
+    -->
+      <object-name>vortex_generators</object-name>
+      <object-name>nose_wheel_door_left</object-name>
+      <object-name>nose_wheel_door_right</object-name>
+      <object-name>gun</object-name>
+      <object-name>canopy_frame</object-name>
+      <object-name>air_entries</object-name>
+      <object-name>airbrakes</object-name>
+      <object-name>left_gear_inner_door</object-name>
+      <object-name>right_gear_inner_door</object-name>
+      <object-name>antennas</object-name>
+      <object-name>nose_wheel</object-name> 
+      <object-name>left_wheel</object-name>
+      <object-name>right_wheel</object-name>
+      <object-name>left_wheel_door</object-name>
+      <object-name>right_wheel_door</object-name>
+      <object-name>pitots</object-name>
+      <object-name>winglets</object-name>
+      <object-name>pylon_right</object-name>
+      <object-name>pylon_left</object-name>
+      <object-name>external_tank_left</object-name>
+      <object-name>external_tank_right</object-name>
+      <object-name>flap_right</object-name>
+      <object-name>flap_left</object-name>
+      <object-name>aileron_right</object-name>     
+      <object-name>aileron_left</object-name>
+      <object-name>tank_right</object-name>
+      <object-name>tank_left</object-name>
+      <object-name>elevators</object-name>
+      <object-name>rudder</object-name>
+      <object-name>tail</object-name>
+      <object-name>fuselage</object-name>
+    <property-base>sim/model/livery</property-base>
+    <texture-prop>texture</texture-prop>
+    <texture>default.png</texture>
+
+    <specular>
+      <red-prop>specular/red</red-prop>
+      <green-prop>specular/green</green-prop>
+      <blue-prop>specular/blue</blue-prop>
+    </specular>
+
+    <emission>
+      <red-prop>emission/red</red-prop>
+      <green-prop>emission/green</green-prop>
+      <blue-prop>emission/blue</blue-prop>
+    </emission>
+
+  </animation>
+	
+	<!-- Une ombre pour OSG -->
+	<model>
+		<name>shadowOSG</name>
+		<path>Aircraft/l39/Models/shadow.xml</path>
+	</model>
+
+	
+	<model>
+		<name>strobe</name>
+		<path>Aircraft/l39/Models/strobe.xml</path>
+		<offsets>
+			<x-m>-0.700</x-m>
+			<y-m>0.0</y-m>
+			<z-m>0.45</z-m>
+		</offsets>
+	</model>	
+	
+	<!-- Canopy reflection effect -->
+	<animation>
+		<type>shader</type> 
+		<shader>chrome</shader> 
+		<texture>glass_shader.png</texture> 
+		<object-name>canopy</object-name> 
+	</animation>
+	
+	<!-- No shadows -->
+	<animation>
+		<type>noshadow</type>
+		<object-name>nav_light_green</object-name>
+		<object-name>nav_light_red</object-name>
+		<object-name>canopy</object-name>
+	</animation>	
+	
+	<!-- Hide the canopy in view 0 -->
+	<animation>
+		<type>select</type>
+		<object-name>canopy</object-name>
+		<condition>
+			<not>
+				<equals>
+					<property>sim/current-view/view-number</property>
+					<value>0</value>
+				</equals>
+			</not>
+		</condition>
+	</animation>
+	
+	<!-- Hide the pilots in view 0 -->
+	<animation>
+		<type>select</type>
+		<object-name>pilot1</object-name>
+		<condition>
+			<not>
+				<equals>
+					<property>sim/current-view/view-number</property>
+					<value>0</value>
+				</equals>
+			</not>
+		</condition>
+	</animation>	
+	
+	<!-- Virtual Cockpit -->
+	<model>
+		<path>Aircraft/l39/Models/Instruments/panel.xml</path>
+		<offsets>
+			<x-m>0.0</x-m>
+			<y-m>0.0</y-m>
+			<z-m>0.0</z-m>
+			<roll-deg>0.0</roll-deg>
+			<pitch-deg>0.0</pitch-deg>
+			<heading-deg>0.0</heading-deg>
+		</offsets>
+	</model>	
+	
+	<!-- Rudder -->
+	<animation>
+		<type>rotate</type>
+		<object-name>rudder</object-name>
+		<property>controls/flight/rudder</property>
+		<factor>30</factor>
+		<axis>
+			<x1-m>3.88</x1-m>
+			<y1-m>0.0</y1-m>
+			<z1-m>0.64</z1-m>
+			<x2-m>4.67</x2-m>
+			<y2-m>0.0</y2-m>
+			<z2-m>2.12</z2-m>
+		</axis>
+	</animation>		
+	
+	<!-- Elevator -->
+	<animation>
+		<type>rotate</type>
+		<object-name>elevators</object-name>
+		<property>controls/flight/elevator</property>
+		<factor>15</factor>
+		<axis>
+			<x1-m>4.534</x1-m>
+			<y1-m>-1.896</y1-m>
+			<z1-m>0.225</z1-m>
+			<x2-m>4.534</x2-m>
+			<y2-m>1.896</y2-m>
+			<z2-m>0.225</z2-m>
+		</axis>
+	</animation>
+	
+	<!-- Left aileron -->
+	<animation>
+		<type>rotate</type>
+		<object-name>aileron_left</object-name>
+		<property>surface-positions/left-aileron-pos-norm</property>
+		<factor>-15.0</factor>
+		<axis>
+			<x1-m>0.648</x1-m>
+			<y1-m>-2.613</y1-m>
+			<z1-m>-0.649</z1-m>
+			<x2-m>0.491</x2-m>
+			<y2-m>-3.873</y2-m>
+			<z2-m>-0.617</z2-m>
+		</axis>
+	</animation>	
+	
+	<!-- Right aileron -->
+	<animation>
+		<type>rotate</type>
+		<object-name>aileron_right</object-name>
+		<property>surface-positions/right-aileron-pos-norm</property>
+		<factor>-15.0</factor>
+		<axis>
+			<x1-m>0.491</x1-m>
+			<y1-m>3.873</y1-m>
+			<z1-m>-0.617</z1-m>		
+			<x2-m>0.648</x2-m>
+			<y2-m>2.613</y2-m>
+			<z2-m>-0.649</z2-m>
+		</axis>
+	</animation>		
+
+	<!-- Left flap -->
+	<animation>
+		<type>rotate</type>
+		<object-name>flap_left</object-name>
+		<property>surface-positions/flap-pos-norm</property>
+		<factor>40.0</factor>
+		<axis>
+			<x1-m>0.648</x1-m>
+			<y1-m>-2.592</y1-m>
+			<z1-m>-0.649</z1-m>
+			<x2-m>0.858</x2-m>
+			<y2-m>-0.742</y2-m>
+			<z2-m>-0.702</z2-m>
+		</axis>
+	</animation>
+	
+	<!-- Right flap -->
+	<animation>
+		<type>rotate</type>
+		<object-name>flap_right</object-name>
+		<property>surface-positions/flap-pos-norm</property>
+		<factor>40.0</factor>
+		<axis>
+			<x1-m>0.858</x1-m>
+			<y1-m>0.742</y1-m>
+			<z1-m>-0.702</z1-m>
+			<x2-m>0.648</x2-m>
+			<y2-m>2.592</y2-m>
+			<z2-m>-0.649</z2-m>
+		</axis>
+	</animation>
+	
+	<!-- Landing gears -->
+	<animation>
+		<type>select</type>
+		<object-name>nose_wheel</object-name>
+		<object-name>left_wheel</object-name>
+		<object-name>right_wheel</object-name>
+		<object-name>right_gear_inner_door</object-name>
+		<object-name>left_gear_inner_door</object-name>
+		<object-name>right_wheel_door</object-name>
+		<object-name>left_wheel_door</object-name>
+		<object-name>nose_wheel_door_left</object-name>
+		<object-name>nose_wheel_door_right</object-name>				
+		<condition>
+			<greater-than>
+				<property>gear/gear[0]/position-norm</property>
+				<value>0</value>
+			</greater-than>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>doors_closed</object-name>
+		<condition>
+			<equals>
+				<property>gear/gear[0]/position-norm</property>
+				<value>0</value>
+			</equals>
+		</condition>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>nose_wheel</object-name>
+		<property>gear/gear[0]/position-norm</property>
+		<factor>90</factor>
+		<offset-deg>-90</offset-deg>
+		<center>
+			<x-m>-3.929</x-m>
+			<y-m>0</y-m>
+			<z-m>-0.859</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>-1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>left_wheel</object-name>
+		<property>gear/gear[0]/position-norm</property>
+		<factor>90</factor>
+		<offset-deg>-90</offset-deg>
+		<center>
+			<x-m>0.236</x-m>
+			<y-m>-1.283</y-m>
+			<z-m>-0.885</z-m>
+		</center>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>right_wheel</object-name>
+		<property>gear/gear[0]/position-norm</property>
+		<factor>90</factor>
+		<offset-deg>-90</offset-deg>
+		<center>
+			<x-m>0.236</x-m>
+			<y-m>1.283</y-m>
+			<z-m>-0.885</z-m>
+		</center>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>left_wheel_door</object-name>
+		<property>gear/gear[0]/position-norm</property>
+		<factor>90</factor>
+		<offset-deg>-90</offset-deg>
+		<center>
+			<x-m>0.121</x-m>
+			<y-m>-1.359</y-m>
+			<z-m>-0.894</z-m>
+		</center>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>right_wheel_door</object-name>
+		<property>gear/gear[0]/position-norm</property>
+		<factor>90</factor>
+		<offset-deg>-90</offset-deg>
+		<center>
+			<x-m>0.121</x-m>
+			<y-m>1.359</y-m>
+			<z-m>-0.894</z-m>
+		</center>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>left_gear_inner_door</object-name>
+		<property>gear/gear[0]/position-norm</property>
+		<factor>180</factor>
+		<offset-deg>-180</offset-deg>
+		<center>
+			<x-m>0.344</x-m>
+			<y-m>-0.070</y-m>
+			<z-m>-1.039</z-m>
+		</center>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<condition>
+			<greater-than>
+				<property>gear/gear[0]/position-norm</property>
+				<value>0.5</value>
+			</greater-than>
+		</condition>		
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>right_gear_inner_door</object-name>
+		<property>gear/gear[0]/position-norm</property>
+		<factor>-180</factor>
+		<offset-deg>180</offset-deg>
+		<center>
+			<x-m>0.344</x-m>
+			<y-m>0.070</y-m>
+			<z-m>-1.039</z-m>
+		</center>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<condition>
+			<greater-than>
+				<property>gear/gear[0]/position-norm</property>
+				<value>0.5</value>
+			</greater-than>
+		</condition>		
+	</animation>	
+
+	<!-- Throttle -->
+	<animation>
+		<type>rotate</type>
+		<object-name>throttle</object-name>
+		<property>controls/engines/engine[0]/throttle</property>
+		<factor>90</factor>
+		<center>
+			<x-m>-3.057</x-m>
+			<y-m>-0.301</y-m>
+			<z-m>-0.677</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>-1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<!-- Stick animation on Y axis -->
+	<animation>
+		<type>rotate</type>
+		<object-name>stick</object-name>
+		<property>/controls/flight/elevator</property>
+		<factor>-8</factor>
+		<center>
+			<x-m>-3.192</x-m>
+			<y-m>0.0</y-m>
+			<z-m>-0.923</z-m>
+		</center>
+		<axis>
+			<x>0.0</x>
+			<y>1.0</y>
+			<z>0.0</z>
+		</axis>
+	</animation>
+	
+	<!-- Stick animation on X axis -->		
+	<animation>
+		<type>rotate</type>
+		<object-name>stick</object-name>
+		<property>/controls/flight/aileron</property>
+		<factor>-8</factor>
+		<center>
+			<x-m>-3.192</x-m>
+			<y-m>0.0</y-m>
+			<z-m>-0.923</z-m>
+		</center>
+		<axis>
+			<x>1.0</x>
+			<y>0.0</y>
+			<z>0.0</z>
+		</axis>
+	</animation>	
+
+	<!-- Switch the landing lights on/off -->
+	<animation>
+		<type>select</type>
+		<object-name>nav_light_red</object-name>
+		<object-name>nav_light_green</object-name>
+		<condition>
+			<equals>
+				<property>sim/model/hide-lights</property>
+				<value>0</value>
+			</equals>
+		</condition>
+	</animation>
+	
+	<!-- Nav lights always face the observer -->
+	<animation>
+		<type>translate</type>
+		<object-name>nav_light_green</object-name>
+		<offset-m>4.45</offset-m>
+		<axis>
+			<x>-0.788</x>
+			<y>4.268</y>
+			<z>-0.666</z>
+		</axis>
+	</animation>
+	<animation>
+		<type>billboard</type>
+		<object-name>nav_light_green</object-name>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>nav_light_red</object-name>
+		<offset-m>4.45</offset-m>
+		<axis>
+			<x>-0.788</x>
+			<y>-4.268</y>
+			<z>-0.666</z>
+		</axis>
+	</animation>
+	<animation>
+		<type>billboard</type>
+		<object-name>nav_light_red</object-name>
+	</animation>
+	
+	<!-- Landing gear switch -->
+	<animation>
+		<type>rotate</type>
+		<object-name>landing_gear_switch</object-name>
+		<property>gear/gear[0]/position-norm</property>
+		<factor>90</factor>
+		<offset-deg>-90</offset-deg>
+		<center>
+			<x-m>-3.387</x-m>
+			<y-m>-0.174</y-m>
+			<z-m>-0.576</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+		<condition>
+			<greater-than>
+				<property>gear/gear[0]/position-norm</property>
+				<value>0.4</value>
+			</greater-than>
+		</condition>			
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>landing_gear_up</object-name>
+		<condition>
+			<not>
+				<equals>
+					<property>gear/gear[0]/position-norm</property>
+					<value>1</value>
+				</equals>
+			</not>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>landing_gear_down</object-name>
+		<condition>
+			<equals>
+				<property>gear/gear[0]/position-norm</property>
+				<value>1</value>
+			</equals>
+		</condition>
+	</animation>
+
+	 Show/Hide external tanks 
+	<animation>
+		<type>select</type>
+		<object-name>external_tank_left</object-name>
+		<object-name>external_tank_right</object-name>
+		<condition>
+			<equals>
+				<property>sim/model/hide-tanks</property>
+				<value>0</value>
+			</equals>
+		</condition>
+	</animation>
+	
+
+
+	<!-- Left rudder pedal -->
+	<animation>
+		<type>translate</type>
+		<object-name>rudder_pedal_left</object-name>
+		<property>controls/flight/rudder</property>
+		<factor>0.01</factor>
+		<axis>
+			<x>1.0</x>
+			<y>0.0</y>
+			<z>0.0</z>
+		</axis>
+	</animation>
+	
+	<!-- Right rudder pedal -->
+	<animation>
+		<type>translate</type>
+		<object-name>rudder_pedal_right</object-name>
+		<property>controls/flight/rudder</property>
+		<factor>-0.01</factor>
+		<axis>
+			<x>1.0</x>
+			<y>0.0</y>
+			<z>0.0</z>
+		</axis>
+	</animation>
+  
+  <!--
+    <diffuse>
+      <red-prop>diffuse/red</red-prop>
+      <green-prop>diffuse/green</green-prop>
+      <blue-prop>diffuse/blue</blue-prop>
+    </diffuse>
+
+    <ambient>
+      <red-prop>ambient/red</red-prop>
+      <green-prop>ambient/green</green-prop>
+      <blue-prop>ambient/blue</blue-prop>
+    </ambient>
+-->
+    <specular>
+      <red-prop>specular/red</red-prop>
+      <green-prop>specular/green</green-prop>
+      <blue-prop>specular/blue</blue-prop>
+    </specular>
+
+    <emission>
+      <red-prop>emission/red</red-prop>
+      <green-prop>emission/green</green-prop>
+      <blue-prop>emission/blue</blue-prop>
+    </emission>
+
+  <!-- Particules pour OSG -->
+  <!-- Flamme -->
+  <model>
+    <path>Aircraft/l39/Models/Effects/flammes/flamme.xml</path>
+    <offsets>
+      <x-m>  3.161 </x-m>
+      <y-m>  0.000 </y-m>
+      <z-m> -0.290 </z-m>
+    </offsets>
+  </model>
+
+  <!--   Trainées  -->
+  <!--  Gauche  -->
+  <model>
+    <path>Aircraft/l39/Models/Effects/tiptrail/tiptrail.xml</path>
+    <offsets>
+      <x-m>  1.834 </x-m>
+      <y-m> -4.486 </y-m>
+      <z-m> -0.478 </z-m>
+      <roll-deg>    0 </roll-deg>
+      <pitch-deg>   0 </pitch-deg>
+      <heading-deg> 0 </heading-deg>
+    </offsets>
+  </model>
+
+  <!-- Droite -->
+  <model>
+    <path>Aircraft/l39/Models/Effects/tiptrail/tiptrail.xml</path>
+    <offsets>
+      <x-m>  1.834 </x-m>
+      <y-m>  4.486 </y-m>
+      <z-m> -0.478 </z-m>
+      <roll-deg>    0 </roll-deg>
+      <pitch-deg>   0 </pitch-deg>
+      <heading-deg> 0 </heading-deg>
+    </offsets>
+  </model>
+
+  <!-- Fumée -->
+  <model>
+    <path>Aircraft/l39/Models/Effects/smoke/smokeB.xml</path>
+    <offsets>
+      <x-m>  3.025 </x-m>
+      <y-m> -0.641 </y-m>
+      <z-m> -0.923 </z-m>
+      <roll-deg>    0 </roll-deg>
+      <pitch-deg>   0 </pitch-deg>
+      <heading-deg> 0 </heading-deg>
+    </offsets>
+  </model>
+
+  <model>
+    <path>Aircraft/l39/Models/Effects/smoke/smokeW.xml</path>
+    <offsets>
+      <x-m>  3.025 </x-m>
+      <y-m> -0.641 </y-m>
+      <z-m> -0.923 </z-m>
+      <roll-deg>    0 </roll-deg>
+      <pitch-deg>   0 </pitch-deg>
+      <heading-deg> 0 </heading-deg>
+    </offsets>
+  </model>
+
+  <model>
+    <path>Aircraft/l39/Models/Effects/smoke/smokeR.xml</path>
+    <offsets>
+      <x-m>  3.025 </x-m>
+      <y-m> -0.641 </y-m>
+      <z-m> -0.923 </z-m>
+      <roll-deg>    0 </roll-deg>
+      <pitch-deg>   0 </pitch-deg>
+      <heading-deg> 0 </heading-deg>
+    </offsets>
+  </model>
+
+</PropertyList>
