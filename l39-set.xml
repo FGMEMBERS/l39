@@ -47,6 +47,13 @@ History:
 			<menu n="99">
 				<label>Albatros</label>
 				<enabled type="bool">true</enabled>
+                                 <item>
+	                                <label>Select Livery</label>
+	                                <binding>
+	                                <command>nasal</command>
+	                                <script>aircraft.livery.dialog.toggle()</script>
+                                 	</binding>
+                                </item>
 				<item>
 					<label>Show/Hide External Tanks</label>
 					<binding>
@@ -98,6 +105,7 @@ History:
  <nasal>
 	<l39>
 		<file>Aircraft/l39/Nasal/strobe.nas</file>
+                <file>Aircraft/l39/Nasal/l39-liveries.nas</file>
 	</l39>
 </nasal>
 
