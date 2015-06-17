@@ -1,14 +1,15 @@
 <?xml version="1.0"?>
 
 <PropertyList>
-<sim>
+  <sim>
     <model>
-			<livery>
-				<name type="string">Green</name>
-				<texture>Liveries/Green.png</texture>
-			</livery>
-			
-        
+      <livery>
+	<name type="string">Green</name>
+	<index type="int">3</index>
+	<bodyWork>
+	  <texture>Liveries/Green.png</texture>
+	</bodyWork>
+      </livery>
     </model>
-</sim>
+  </sim>
 </PropertyList>

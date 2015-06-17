@@ -1,14 +1,15 @@
 <?xml version="1.0"?>
 
 <PropertyList>
-<sim>
+  <sim>
     <model>
-			<livery>
-				<name type="string">VooDoo RAF</name>
-				<texture>Liveries/VooDoo_RAF.jpg</texture>
-			</livery>
-			
-        
+      <livery>
+	<name type="string">VooDoo RAF</name>
+	<index type="int">5</index>
+	<bodyWork>
+	  <texture>Liveries/VooDoo_RAF.png</texture>
+	</bodyWork>
+      </livery>
     </model>
-</sim>
+  </sim>
 </PropertyList>
