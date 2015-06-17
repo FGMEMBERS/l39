@@ -5,10 +5,7 @@
     <model>
       <livery>
         <name type="string">Firecat</name>
-        <index type="int">1</index>
-        <bodyWork>
   	  <texture>Liveries/firecat.png</texture>
-        </bodyWork>
       </livery>
     </model>
   </sim>
