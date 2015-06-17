@@ -3,6 +3,9 @@
 <PropertyList>
 	<path>l39.ac</path>
 	
+	<!-- MP sound call -->
+  <sound><path>Aircraft/l39/Sounds/mp-sound.xml</path></sound>
+
 	<model>
 		<name>strobe</name>
 		<path>Aircraft/l39/Models/strobe.xml</path>
@@ -12,6 +15,130 @@
 			<z-m>0.45</z-m>
 		</offsets>
 	</model>	
+
+     
+<!-- Livery System -->
+    <nasal>
+        <load>
+            var livery_update = aircraft.livery_update.new("Aircraft/l39/Models/Liveries", 10);
+        </load>
+
+        <unload>
+            livery_update.stop();
+        </unload>
+    </nasal>
+
+   <!-- object selection for livery -->
+<animation>
+	<type>material</type>
+	<object-name>fuselage</object-name>
+	<object-name>tank_right</object-name>
+	<object-name>tank_left</object-name>
+	<object-name>pitots</object-name>
+	<object-name>external_tank_right</object-name>
+	<object-name>external_tank_left</object-name>
+	<object-name>aileron_left</object-name>
+	<object-name>aileron_right</object-name>
+	<object-name>flap_right</object-name>
+	<object-name>flap_left</object-name>
+	<object-name>canopy_frame</object-name>
+	<object-name>pylon_left</object-name>
+	<object-name>pylon_right</object-name>
+  	<object-name>gun</object-name> 
+	<object-name>nose_wheel_door_right</object-name>
+	<object-name>nose_wheel_door_left</object-name>
+	<object-name>antennas</object-name>
+	<object-name>air_entries</object-name>
+	<object-name>left_wheel_door</object-name>
+      <object-name>right_wheel_door</object-name>
+      <object-name>tail</object-name>
+      <object-name>rudder</object-name>
+      <object-name>winglets</object-name>
+      <object-name>elevators</object-name>
+      <object-name>doors_closed</object-name>
+	<object-name>airbrakes</object-name>
+	<object-name>left_gear_inner_door</object-name>
+	<object-name>right_gear_inner_door</object-name>
+
+
+	<property-base>sim/model/livery</property-base>
+	<texture-prop>texture</texture-prop>
+	<texture>default.png</texture>
+</animation>
+
+ <!-- Pilot -->
+   <animation>
+        <type>material</type>
+        <object-name>tete</object-name>
+    <object-name>corps</object-name>
+    <object-name>bras</object-name>
+    <object-name>avantbras</object-name>
+    <object-name>main</object-name>
+        <property-base>sim/model/livery</property-base>
+        <texture-prop>texture-pilot</texture-prop>
+        <texture>fighter_pilot.png</texture>
+    </animation>
+
+<!--End  Livery System -->
+
+
+ <!-- rembrandt auto switching for glass -->
+  <effect>
+  <inherits-from>Effects/model-transparent</inherits-from>
+  <condition>
+    <property>sim/rendering/rembrandt/enabled</property>
+  </condition>
+    <object-name>canopy</object-name>
+    <object-name>hudglass</object-name>
+    <object-name>flash</object-name>
+    <object-name>strobe</object-name>
+  
+  
+</effect>
+
+<!-- Turns off non rembrant lighting and effects -->
+<animation>
+        <type>select</type>
+         <object-name>Taxi-Light-Left</object-name>
+	<object-name>Taxi-Light-right</object-name>
+	<object-name>LandingLights</object-name>
+	<object-name>NoseGearLandinglight</object-name> 
+	<object-name>NoseGearLandinglight1</object-name> 
+			<condition>
+            <not>
+            <property>/sim/rendering/rembrandt/enabled</property>
+            </not>
+        </condition>
+    </animation>		
+  
+  <!-- Solid Surfaces for Rembrandt rendering -->
+   <animation>
+    
+  <object-name>fuselage</object-name>
+    <object-name>object.007</object-name>
+    <object-name>object.001</object-name>
+    <object-name>object.010</object-name>
+    <object-name>rudder</object-name>
+    <object-name>leftelevator</object-name>
+    <object-name>rightelevator</object-name>
+    <object-name>object.004</object-name>
+    <object-name>leftflap</object-name>
+    <object-name>leftaileron</object-name>
+    <object-name>rightflap</object-name>
+    <object-name>rightaileron</object-name>
+    <object-name>lhspeedbrake_ext</object-name>
+    <object-name>rhspeedbrake_ext</object-name>
+    <object-name>rightgeardoor</object-name>
+    <object-name>leftgeardoor</object-name>
+    <object-name>leftgeardoor2</object-name>
+    <object-name>rightgeardoor2</object-name>
+    <object-name>front_door_fwd</object-name>
+    
+		
+    </animation>	
+ 
+
+
 	
 	<!-- Canopy reflection effect -->
 	<animation>
@@ -34,27 +161,49 @@
 		<type>select</type>
 		<object-name>canopy</object-name>
 		<condition>
-			<not>
-				<equals>
-					<property>sim/current-view/view-number</property>
-					<value>0</value>
-				</equals>
-			</not>
-		</condition>
+<not>
+            <property>sim/current-view/internal</property>
+</not>
+        </condition>
 	</animation>
+	
+	
+	<!-- Pilots  -->
+	<model>
+    <name>pilot</name>
+    <path>Aircraft/l39/Models/pilot/pilot.xml</path>
+    <offsets>
+       <x-m>-2.69</x-m>
+      <y-m>0</y-m>
+      <z-m>-0.55 </z-m>
+      <pitch-deg>0</pitch-deg>
+      <heading-deg>0</heading-deg>
+    </offsets>
+  </model>
+  
+  <model>
+    <name>instructor</name>
+    <path>Aircraft/l39/Models/pilot/pilot.xml</path>
+    <offsets>
+       <x-m>-1.4</x-m>
+      <y-m>0</y-m>
+      <z-m>-0.35 </z-m>
+      <pitch-deg>0</pitch-deg>
+      <heading-deg>0</heading-deg>
+    </offsets>
+  </model>
+	
 	
 	<!-- Hide the pilots in view 0 -->
 	<animation>
 		<type>select</type>
-		<object-name>pilot1</object-name>
+		<object-name>pilot</object-name>
+		<object-name>instructor</object-name>
 		<condition>
-			<not>
-				<equals>
-					<property>sim/current-view/view-number</property>
-					<value>0</value>
-				</equals>
-			</not>
-		</condition>
+<not>
+            <property>sim/current-view/internal</property>
+</not>
+        </condition>
 	</animation>	
 	
 	<!-- Virtual Cockpit -->
@@ -472,18 +621,7 @@
 		</condition>
 	</animation>
 
-	<!-- Show/Hide external tanks -->
-	<animation>
-		<type>select</type>
-		<object-name>external_tank_left</object-name>
-		<object-name>external_tank_right</object-name>
-		<condition>
-			<equals>
-				<property>sim/model/hide-tanks</property>
-				<value>0</value>
-			</equals>
-		</condition>
-	</animation>
+	
 
 	<!-- Left rudder pedal -->
 	<animation>
@@ -510,5 +648,257 @@
 			<z>0.0</z>
 		</axis>
 	</animation>		
+	
+	 <!-- Landing lights -->
+   <model>
+<path>Aircraft/l39/Models/Lights/landinglight.xml</path>
+<name>NoseGearLandinglight</name>     
+<condition>
+ <equals>
+<property>gear/gear[0]/position-norm</property>
+<value type="bool">true</value>
+ </equals>
+  </condition>
+
+<offsets>
+      <x-m>-1.25</x-m>
+      <y-m>-4.12</y-m>
+      <z-m>-0.67</z-m>
+      <pitch-deg>-9.15</pitch-deg>
+      <heading-deg>0</heading-deg>    
+</offsets>
+</model>
+
+<model>
+    <name>Taxi-Light-Left</name>
+    <path>Aircraft/l39/Models/Lights/light-cone.xml</path>
+    <offsets>
+       <x-m>-1.45</x-m>
+      <y-m>-4.12</y-m>
+      <z-m>-0.67</z-m>
+      <pitch-deg>-9.33</pitch-deg>
+      <heading-deg>0</heading-deg>
+    </offsets>
+  </model>
+  
+  <model>
+    <name>Taxi-Light-LeftR</name>
+    <path>Aircraft/l39/Models/Effects/lightsR/LandingLight.xml</path>
+    <offsets>
+       <x-m>-1.45</x-m>
+      <y-m>-4.12</y-m>
+      <z-m>-0.67</z-m>
+      <pitch-deg>-9.33</pitch-deg>
+      <heading-deg>0</heading-deg>
+    </offsets>
+  </model>
+  
+  <model>
+<path>Aircraft/l39/Models/Lights/landinglight.xml</path>
+<name>NoseGearLandinglight1</name>     
+<condition>
+ <equals>
+<property>gear/gear[0]/position-norm</property>
+<value type="bool">true</value>
+ </equals>
+  </condition>
+
+<offsets>
+      <x-m>-1.25</x-m>
+      <y-m>4.12</y-m>
+      <z-m>-0.67</z-m>
+      <pitch-deg>-9.15</pitch-deg>
+      <heading-deg>0</heading-deg>    
+</offsets>
+</model>
+
+<model>
+    <name>Taxi-Light-right</name>
+    <path>Aircraft/l39/Models/Lights/light-cone.xml</path>
+    <offsets>
+       <x-m>-1.45</x-m>
+      <y-m>4.12</y-m>
+      <z-m>-0.67</z-m>
+      <pitch-deg>-9.33</pitch-deg>
+      <heading-deg>0</heading-deg>
+    </offsets>
+  </model>
+  
+  
+  <model>
+    <name>Taxi-Light-RightR</name>
+    <path>Aircraft/l39/Models/Effects/lightsR/LandingLight.xml</path>
+    <offsets>
+       <x-m>-1.45</x-m>
+      <y-m>4.12</y-m>
+      <z-m>-0.67</z-m>
+      <pitch-deg>-9.33</pitch-deg>
+      <heading-deg>0</heading-deg>
+    </offsets>
+  </model>
+  
+ 
+  <animation>
+    <type>select</type>
+    <object-name>Taxi-Light-Left</object-name>
+	<object-name>Taxi-Light-right</object-name>
+	<object-name>LandingLights</object-name>
+	<object-name>Taxi-Light-RightR</object-name>
+	<object-name>Taxi-Light-LeftR</object-name>
+     <condition>
+      <equals>
+        <property>gear/gear[0]/position-norm</property>
+        <value> 1 </value>
+      </equals>
+    </condition>
+  </animation> 
+  
+  <!-- Vapour -->
+  
+  <model>
+		<path>Aircraft/l39/Models/Effects/Vapour/Vapour2.xml</path>
+		<offsets>
+			<x-m>1.0</x-m>
+			<y-m>-2</y-m>
+			<z-m>0.4</z-m>
+			<roll-deg>0</roll-deg>
+			<pitch-deg>0</pitch-deg>
+			<heading-deg>45</heading-deg>
+		</offsets>
+	</model>
+	
+	<model>
+		<path>Aircraft/l39/Models/Effects/Vapour/Vapour2.xml</path>
+		<offsets>
+			<x-m>1.0</x-m>
+			<y-m>2</y-m>
+			<z-m>0.4</z-m>
+			<roll-deg>0</roll-deg>
+			<pitch-deg>0</pitch-deg>
+			<heading-deg>-45</heading-deg>
+		</offsets>
+	</model>
+	
+	<!-- fire -->
+	
+	<model>
+		<name>fire</name>
+		<path>Aircraft/l39/Models/Effects/Engine/Fire.xml</path>
+		<condition>
+			<equals>
+				<property>sim/crashed</property>
+				<value type="bool">true</value>
+			</equals>
+		</condition>
+		<offsets>
+			<x-m>1.05</x-m>
+			<y-m>0.00</y-m>
+			<z-m>1.75</z-m>
+			<heading-deg>0</heading-deg>
+			<roll-deg>0</roll-deg>
+			<pitch-deg>0</pitch-deg>
+		</offsets>
+	</model>
+	
+	<!-- wash -->
+	
+	<!-- aircraft wash modeled in the lines below -->
+ 
+ <model>
+	 <name>aircraft_wash_l</name>
+	 <path>Aircraft/l39/Models/Effects/wash/aircraft_wash.xml</path>
+	 <condition>
+		 <equals>
+			 <property>controls/state/low_level</property>
+			 <value>1</value>
+		 </equals>
+	 </condition>
+	 <offsets>
+		 <x-m>25.000</x-m>
+		 <y-m>0</y-m>
+		 <z-m>0.0</z-m>
+		 <pitch-deg>0</pitch-deg>
+	 </offsets>
+ </model>
+ 
+ <animation>
+	 <type>translate</type>
+	 <object-name>aircraft_wash_l</object-name>
+	 
+	 <property>position/altitude-agl-ft</property>
+	 <condition>
+		 <equals>
+			 <property>controls/state/low_level</property>
+			 <value>1</value>
+		 </equals>
+	 </condition>
+	 <interpolation>
+		 <entry>
+			 <ind>0.0</ind>
+			 <dep>0.0</dep>
+		 </entry>
+		 <entry>
+			 <ind>300.0</ind>
+			 <dep>-90</dep>
+		 </entry>
+	 </interpolation>
+	 
+	 <axis>
+		 <x>-1</x>
+		 <y>0</y>
+		 <z>1.0</z>
+	 </axis>
+	 
+ </animation>
+ 
+ <!-- smoke and trails -->
+ 
+ <model>
+    <path>Aircraft/l39/Models/Effects/Smoke/smokeL.xml</path>
+    <offsets>
+      <x-m>  5</x-m>
+      <y-m> 0</y-m>
+      <z-m> -0.5</z-m>
+    </offsets>
+  </model>
+  
+   <model>
+    <path>Aircraft/l39/Models/Effects/Trail/TrailL.xml</path>
+    <offsets>
+      <x-m>  5 </x-m>
+      <y-m>  0 </y-m>
+      <z-m>  -0.5 </z-m>
+    </offsets>
+  </model>
+  
+  <model>
+  <path>Aircraft/l39/Models/Effects/Tiptrail/Tiptrail.xml</path>
+   <offsets>
+      <x-m>0</x-m>
+      <y-m>-4.0</y-m>
+      <z-m>-0.67</z-m>
+     <pitch-deg>0</pitch-deg>
+   </offsets>
+ </model>
+
+ <model>
+  <path>Aircraft/l39/Models/Effects/Tiptrail/Tiptrail.xml</path>
+   <offsets>
+     <x-m>0</x-m>
+      <y-m>4.0</y-m>
+      <z-m>-0.67</z-m>
+     <pitch-deg>0</pitch-deg>
+   </offsets>
+ </model>
+	
+<!-- External loads -->
+<model>
+<path>Aircraft/l39/Models/stores/loads.xml</path>
+<offsets>
+      <x-m> 0 </x-m>
+      <y-m> 0 </y-m>
+      <z-m> 0 </z-m>
+    </offsets>
+</model> 
 	
 </PropertyList>
