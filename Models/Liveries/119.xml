@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+  <sim>
+    <model>
+      <livery>
+        <name type="string">119</name>
+        <index type="int">6</index>
+        <bodyWork>
+  	  <texture>Liveries/119.png</texture>
+        </bodyWork>
+      </livery>
+    </model>
+   </sim>
+</PropertyList>
