@@ -137,7 +137,7 @@
     <name>PanelSmoke</name>
     <path>Aircraft/l39/Models/Instruments/smoke/smoke.xml</path>
     <offsets>
-      <x-m>  -3.425 </x-m>  <!-- à -3.43-->
+      <x-m>  -3.425 </x-m>  <!--  -3.43-->
       <y-m> -0.175 </y-m>
       <z-m>  -0.525 </z-m>
       <roll-deg>    0.000 </roll-deg>

@@ -25,7 +25,7 @@
     <object-name>elevator</object-name>
     ...
     ...
-    Pour ce la il faut ouvrir le fichier l39.ac et énumérer tous les objets, travail long et fastidieux ;)
+    
     -->
       <object-name>vortex_generators</object-name>
       <object-name>nose_wheel_door_left</object-name>
@@ -629,7 +629,7 @@
     </offsets>
   </model>
 
-  <!--   Trainées  -->
+  <!--    -->
   <!--  Gauche  -->
   <model>
     <path>Aircraft/l39/Models/Effects/tiptrail/tiptrail.xml</path>
@@ -656,7 +656,7 @@
     </offsets>
   </model>
 
-  <!-- Fumée -->
+  <!--  -->
   <model>
     <path>Aircraft/l39/Models/Effects/smoke/smokeB.xml</path>
     <offsets>
